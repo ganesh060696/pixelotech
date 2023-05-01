@@ -18,6 +18,11 @@ There are two apps setup,  `users` and `user_interests`.
 3. When user rates a image for the second time, a new row is not created int he DB for the change, instead the same row will be updated.
 4. The User will not be shown any images until he completes his profile, which is uodating his username. And this will be taken by Mobile Application again.
 
+# Key Points
+1. Added AES encryption to phone number field in Users Model for security
+2. Added Custom Json Renderer for Generic API format all over
+3. Added Custom pagination to support Custom Json Renderer
+4. Added Caching for OTP validation and to cache mostly static data, which would help in Performance of APIs and DB
 
 Documentation below.
 
@@ -404,7 +409,7 @@ According to the current Floor of the elevator this api will show direction
 
 
 # Swagger Postman documentation Link
-``
+`https://documenter.getpostman.com/view/27188014/2s93eU2E9V`
 
 # Video Demonstrating the APP Flows
 ``
