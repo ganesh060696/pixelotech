@@ -5,7 +5,9 @@ import base64
 
 
 class AESCipher(object):
-
+    """
+    Encrypt and Decrypt a String with AES Protocol
+    """
     def __init__(self):
         self.block_size = 16
         self.key = base64.urlsafe_b64decode(settings.AES_ENCRYPTION_KEY)

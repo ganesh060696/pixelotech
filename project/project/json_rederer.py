@@ -143,6 +143,7 @@ class ApiV3JSONRenderer(JSONRenderer):
             modified_data["errors"] = error
 
         else:
+            modified_data["display_message"] = data.pop("display_message", None)
             modified_data["total_count"] = data.get("total_count")
             modified_data["next"] = data.get("next")
             modified_data["previous"] = data.get("previous")

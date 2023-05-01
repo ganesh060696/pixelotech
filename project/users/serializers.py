@@ -3,6 +3,9 @@ from .models import User
 
 
 class UserSerializer(serializers.ModelSerializer):
+    """
+    Serializer for User Model
+    """
     token = serializers.SerializerMethodField(read_only=True)
 
     class Meta:

@@ -1,0 +1,1258 @@
+{
+	"info": {
+		"_postman_id": "9c761ef3-339a-4236-88d7-1bf42452b9f2",
+		"name": "Pixelotech",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "20269562"
+	},
+	"item": [
+		{
+			"name": "Login & Signup",
+			"item": [
+				{
+					"name": "Generate OTP",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"phone_number\": \"+918125825876\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BASE_URL}}/api/users/generate_otp/",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"api",
+								"users",
+								"generate_otp",
+								""
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Generate OTP",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"phone_number\": \"+918125825876\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{BASE_URL}}/api/users/generate_otp/",
+									"host": [
+										"{{BASE_URL}}"
+									],
+									"path": [
+										"api",
+										"users",
+										"generate_otp",
+										""
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Date",
+									"value": "Sun, 30 Apr 2023 20:06:47 GMT"
+								},
+								{
+									"key": "Server",
+									"value": "WSGIServer/0.2 CPython/3.9.6"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Allow",
+									"value": "POST, OPTIONS"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "DENY"
+								},
+								{
+									"key": "Content-Length",
+									"value": "229"
+								},
+								{
+									"key": "Vary",
+									"value": "Cookie"
+								},
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff"
+								},
+								{
+									"key": "Referrer-Policy",
+									"value": "same-origin"
+								},
+								{
+									"key": "Cross-Origin-Opener-Policy",
+									"value": "same-origin"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"success\": true,\n    \"total_count\": null,\n    \"next\": null,\n    \"previous\": null,\n    \"next_page\": null,\n    \"current_page\": null,\n    \"previous_page\": null,\n    \"page_size\": null,\n    \"data\": {\n        \"message\": \"OTP Sent Successfully\",\n        \"phone_number\": \"+918074751370\"\n    }\n}"
+						},
+						{
+							"name": "Invalid Phone Number",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"phone_number\": \"+918125825876\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{BASE_URL}}/api/users/generate_otp/",
+									"host": [
+										"{{BASE_URL}}"
+									],
+									"path": [
+										"api",
+										"users",
+										"generate_otp",
+										""
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "server",
+									"value": "Fly/199ec4d3 (2023-04-25)"
+								},
+								{
+									"key": "date",
+									"value": "Mon, 01 May 2023 15:53:51 GMT"
+								},
+								{
+									"key": "connection",
+									"value": "close"
+								},
+								{
+									"key": "content-type",
+									"value": "application/json"
+								},
+								{
+									"key": "allow",
+									"value": "POST, OPTIONS"
+								},
+								{
+									"key": "x-frame-options",
+									"value": "DENY"
+								},
+								{
+									"key": "content-encoding",
+									"value": "gzip"
+								},
+								{
+									"key": "vary",
+									"value": "Cookie"
+								},
+								{
+									"key": "x-content-type-options",
+									"value": "nosniff"
+								},
+								{
+									"key": "referrer-policy",
+									"value": "same-origin"
+								},
+								{
+									"key": "cross-origin-opener-policy",
+									"value": "same-origin"
+								},
+								{
+									"key": "transfer-encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "via",
+									"value": "1.1 fly.io"
+								},
+								{
+									"key": "fly-request-id",
+									"value": "01GZC0ABAB6555S7G886EQ8XA1-maa"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"success\": false,\n    \"errors\": {\n        \"err_title\": \"Invalid Phone number.\",\n        \"error_message\": \"Phone number is Invalid\",\n        \"err_dev_message\": [\n            \"Exception Occurred\"\n        ],\n        \"error_code\": \"BAD_REQUEST\"\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "verify OTP",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Successful POST request\", function () {",
+									"    pm.expect(pm.response.code).to.be.oneOf([200, 201]);",
+									"});",
+									"",
+									"if (pm.response.code == 200) {",
+									"    response = pm.response.json();",
+									"    pm.environment.set(\"AUTHORIZATION_TOKEN\", response.data.user.token);",
+									"}"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"phone_number\": \"+918125825876\",\n    \"otp_received\": \"00000\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BASE_URL}}/api/users/verify_otp/",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"api",
+								"users",
+								"verify_otp",
+								""
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "verify OTP",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"phone_number\": \"+918125825876\",\n    \"otp_received\": \"00000\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://127.0.0.1:8000/api/users/verify_otp/",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "8000",
+									"path": [
+										"api",
+										"users",
+										"verify_otp",
+										""
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Date",
+									"value": "Sun, 30 Apr 2023 20:06:49 GMT"
+								},
+								{
+									"key": "Server",
+									"value": "WSGIServer/0.2 CPython/3.9.6"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Allow",
+									"value": "POST, OPTIONS"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "DENY"
+								},
+								{
+									"key": "Content-Length",
+									"value": "460"
+								},
+								{
+									"key": "Vary",
+									"value": "Cookie"
+								},
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff"
+								},
+								{
+									"key": "Referrer-Policy",
+									"value": "same-origin"
+								},
+								{
+									"key": "Cross-Origin-Opener-Policy",
+									"value": "same-origin"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"success\": true,\n    \"total_count\": null,\n    \"next\": null,\n    \"previous\": null,\n    \"next_page\": null,\n    \"current_page\": null,\n    \"previous_page\": null,\n    \"page_size\": null,\n    \"data\": {\n        \"display_message\": \"Welcome +918074751370\",\n        \"phone_number\": \"+918074751370\",\n        \"user\": {\n            \"id\": 1,\n            \"username\": \"+918074751370\",\n            \"phone_number\": \"+918074751370\",\n            \"is_profile_complete\": false,\n            \"token\": \"84d6307db3b49a04168ca08a3909616ca5d56b3d\",\n            \"created_at\": \"2023-04-30T19:59:09.894266Z\",\n            \"modified_at\": \"2023-04-30T19:59:09.894275Z\"\n        }\n    }\n}"
+						},
+						{
+							"name": "Invalid OTP",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"phone_number\": \"+918125825876\",\n    \"otp_received\": \"00023\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{BASE_URL}}/api/users/verify_otp/",
+									"host": [
+										"{{BASE_URL}}"
+									],
+									"path": [
+										"api",
+										"users",
+										"verify_otp",
+										""
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "server",
+									"value": "Fly/199ec4d3 (2023-04-25)"
+								},
+								{
+									"key": "date",
+									"value": "Mon, 01 May 2023 15:54:22 GMT"
+								},
+								{
+									"key": "connection",
+									"value": "close"
+								},
+								{
+									"key": "content-type",
+									"value": "application/json"
+								},
+								{
+									"key": "allow",
+									"value": "POST, OPTIONS"
+								},
+								{
+									"key": "x-frame-options",
+									"value": "DENY"
+								},
+								{
+									"key": "content-encoding",
+									"value": "gzip"
+								},
+								{
+									"key": "vary",
+									"value": "Cookie"
+								},
+								{
+									"key": "x-content-type-options",
+									"value": "nosniff"
+								},
+								{
+									"key": "referrer-policy",
+									"value": "same-origin"
+								},
+								{
+									"key": "cross-origin-opener-policy",
+									"value": "same-origin"
+								},
+								{
+									"key": "transfer-encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "via",
+									"value": "1.1 fly.io"
+								},
+								{
+									"key": "fly-request-id",
+									"value": "01GZC0BAK32GW0PH5WY8PKFA9D-maa"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"success\": false,\n    \"errors\": {\n        \"err_title\": \"Invalid OTP.\",\n        \"error_message\": \"OTP is Invalid or expired. Please Check and try again\",\n        \"err_dev_message\": [\n            \"Exception Occurred\"\n        ],\n        \"error_code\": \"BAD_REQUEST\"\n    }\n}"
+						}
+					]
+				}
+			],
+			"auth": {
+				"type": "noauth"
+			},
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			]
+		},
+		{
+			"name": "Users",
+			"item": [
+				{
+					"name": "Update username",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Token 9de51abe1dd875754d5bf1b66297cd880f193e39",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"username\": \"Ganesh123\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BASE_URL}}/api/users/2/",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"api",
+								"users",
+								"2",
+								""
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Invalid Auth Token",
+							"originalRequest": {
+								"method": "PATCH",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"username\": \"Mahesh12\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{BASE_URL}}/api/users/2/",
+									"host": [
+										"{{BASE_URL}}"
+									],
+									"path": [
+										"api",
+										"users",
+										"2",
+										""
+									]
+								}
+							},
+							"status": "Unauthorized",
+							"code": 401,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Date",
+									"value": "Sun, 30 Apr 2023 20:16:48 GMT"
+								},
+								{
+									"key": "Server",
+									"value": "WSGIServer/0.2 CPython/3.9.6"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "WWW-Authenticate",
+									"value": "Basic realm=\"api\""
+								},
+								{
+									"key": "Allow",
+									"value": "GET, PUT, PATCH, DELETE, HEAD, OPTIONS"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "DENY"
+								},
+								{
+									"key": "Content-Length",
+									"value": "156"
+								},
+								{
+									"key": "Vary",
+									"value": "Cookie"
+								},
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff"
+								},
+								{
+									"key": "Referrer-Policy",
+									"value": "same-origin"
+								},
+								{
+									"key": "Cross-Origin-Opener-Policy",
+									"value": "same-origin"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"success\": false,\n    \"errors\": {\n        \"err_title\": \"\",\n        \"error_message\": \"Authentication credentials were not provided.\",\n        \"err_dev_message\": \"\",\n        \"error_code\": \"UNAUTHORIZED\"\n    }\n}"
+						},
+						{
+							"name": "Update username",
+							"originalRequest": {
+								"method": "PATCH",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Token 9de51abe1dd875754d5bf1b66297cd880f193e39",
+										"type": "text",
+										"disabled": true
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"username\": \"Mahesh12\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{BASE_URL}}/api/users/1/",
+									"host": [
+										"{{BASE_URL}}"
+									],
+									"path": [
+										"api",
+										"users",
+										"1",
+										""
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "server",
+									"value": "Fly/199ec4d3 (2023-04-25)"
+								},
+								{
+									"key": "date",
+									"value": "Mon, 01 May 2023 12:36:53 GMT"
+								},
+								{
+									"key": "connection",
+									"value": "close"
+								},
+								{
+									"key": "content-type",
+									"value": "application/json"
+								},
+								{
+									"key": "allow",
+									"value": "GET, PUT, PATCH, DELETE, HEAD, OPTIONS"
+								},
+								{
+									"key": "x-frame-options",
+									"value": "DENY"
+								},
+								{
+									"key": "content-encoding",
+									"value": "gzip"
+								},
+								{
+									"key": "x-content-type-options",
+									"value": "nosniff"
+								},
+								{
+									"key": "referrer-policy",
+									"value": "same-origin"
+								},
+								{
+									"key": "cross-origin-opener-policy",
+									"value": "same-origin"
+								},
+								{
+									"key": "transfer-encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "via",
+									"value": "1.1 fly.io"
+								},
+								{
+									"key": "fly-request-id",
+									"value": "01GZBN1Q5CSV3P5P2A29B83YRF-maa"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"success\": true,\n    \"total_count\": null,\n    \"next\": null,\n    \"previous\": null,\n    \"next_page\": null,\n    \"current_page\": null,\n    \"previous_page\": null,\n    \"page_size\": null,\n    \"data\": {\n        \"id\": 1,\n        \"username\": \"Ganesh12\",\n        \"phone_number\": \"+918125825876\",\n        \"is_profile_complete\": true,\n        \"token\": \"5fdb53552b582fcf2d76891211c6524cb72639d2\",\n        \"created_at\": \"2023-05-01T12:36:25.478064Z\",\n        \"modified_at\": \"2023-05-01T12:36:53.799713Z\"\n    }\n}"
+						},
+						{
+							"name": "Invalid user ID",
+							"originalRequest": {
+								"method": "PATCH",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Token 9de51abe1dd875754d5bf1b66297cd880f193e39",
+										"type": "text",
+										"disabled": true
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"username\": \"Mahesh12\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{BASE_URL}}/api/users/5/",
+									"host": [
+										"{{BASE_URL}}"
+									],
+									"path": [
+										"api",
+										"users",
+										"5",
+										""
+									]
+								}
+							},
+							"status": "Not Found",
+							"code": 404,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "server",
+									"value": "Fly/199ec4d3 (2023-04-25)"
+								},
+								{
+									"key": "date",
+									"value": "Mon, 01 May 2023 15:44:06 GMT"
+								},
+								{
+									"key": "connection",
+									"value": "close"
+								},
+								{
+									"key": "content-type",
+									"value": "application/json"
+								},
+								{
+									"key": "allow",
+									"value": "GET, PUT, PATCH, DELETE, HEAD, OPTIONS"
+								},
+								{
+									"key": "x-frame-options",
+									"value": "DENY"
+								},
+								{
+									"key": "content-encoding",
+									"value": "gzip"
+								},
+								{
+									"key": "x-content-type-options",
+									"value": "nosniff"
+								},
+								{
+									"key": "referrer-policy",
+									"value": "same-origin"
+								},
+								{
+									"key": "cross-origin-opener-policy",
+									"value": "same-origin"
+								},
+								{
+									"key": "transfer-encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "via",
+									"value": "1.1 fly.io"
+								},
+								{
+									"key": "fly-request-id",
+									"value": "01GZBZREV727G70BYXXPSNM0W0-maa"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"success\": false,\n    \"errors\": {\n        \"err_title\": \"\",\n        \"error_message\": \"Not found.\",\n        \"err_dev_message\": \"\",\n        \"error_code\": \"NOT_FOUND\"\n    }\n}"
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "User Interests",
+			"item": [
+				{
+					"name": "List Images",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{BASE_URL}}/api/images",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"api",
+								"images"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "List Images",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{BASE_URL}}/api/images",
+									"host": [
+										"{{BASE_URL}}"
+									],
+									"path": [
+										"api",
+										"images"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Date",
+									"value": "Sun, 30 Apr 2023 20:44:38 GMT"
+								},
+								{
+									"key": "Server",
+									"value": "WSGIServer/0.2 CPython/3.9.6"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Allow",
+									"value": "GET, POST, HEAD, OPTIONS"
+								},
+								{
+									"key": "Expires",
+									"value": "Sun, 30 Apr 2023 20:54:38 GMT"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "max-age=600"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "DENY"
+								},
+								{
+									"key": "Content-Length",
+									"value": "1064"
+								},
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff"
+								},
+								{
+									"key": "Referrer-Policy",
+									"value": "same-origin"
+								},
+								{
+									"key": "Cross-Origin-Opener-Policy",
+									"value": "same-origin"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"success\": true,\n    \"total_count\": 5,\n    \"next\": null,\n    \"previous\": null,\n    \"next_page\": null,\n    \"current_page\": 1,\n    \"previous_page\": null,\n    \"page_size\": 10,\n    \"data\": [\n        {\n            \"id\": 1,\n            \"created_at\": \"2023-04-30T20:34:59.650884Z\",\n            \"modified_at\": \"2023-04-30T20:34:59.650906Z\",\n            \"name\": \"One\",\n            \"image_url\": \"http://getdrawings.com/one-icon#one-icon-3.png\"\n        },\n        {\n            \"id\": 2,\n            \"created_at\": \"2023-04-30T20:34:59.650916Z\",\n            \"modified_at\": \"2023-04-30T20:34:59.650922Z\",\n            \"name\": \"Two\",\n            \"image_url\": \"http://getdrawings.com/free-shirt-icon#free-shirt-icon-9.png\"\n        },\n        {\n            \"id\": 3,\n            \"created_at\": \"2023-04-30T20:34:59.650929Z\",\n            \"modified_at\": \"2023-04-30T20:34:59.650934Z\",\n            \"name\": \"Three\",\n            \"image_url\": \"http://getdrawings.com/serial-number-icon#serial-number-icon-19.png\"\n        },\n        {\n            \"id\": 4,\n            \"created_at\": \"2023-04-30T20:34:59.650941Z\",\n            \"modified_at\": \"2023-04-30T20:34:59.650946Z\",\n            \"name\": \"Four\",\n            \"image_url\": \"http://getdrawings.com/serial-number-icon#serial-number-icon-18.png\"\n        },\n        {\n            \"id\": 5,\n            \"created_at\": \"2023-04-30T20:34:59.650953Z\",\n            \"modified_at\": \"2023-04-30T20:34:59.650957Z\",\n            \"name\": \"Five\",\n            \"image_url\": \"http://getdrawings.com/number-one-icon#number-one-icon-17.png\"\n        }\n    ]\n}"
+						}
+					]
+				},
+				{
+					"name": "Create or Udate User Image Rating",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"image_id\": 1,\n    \"selection_type\": \"interested\"\n}\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BASE_URL}}/api/user_ratings/",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"api",
+								"user_ratings",
+								""
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Interested Iimage",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"image_id\": 1,\n    \"selection_type\": \"interested\"\n}\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{BASE_URL}}/api/user_ratings/",
+									"host": [
+										"{{BASE_URL}}"
+									],
+									"path": [
+										"api",
+										"user_ratings",
+										""
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Date",
+									"value": "Sun, 30 Apr 2023 20:45:46 GMT"
+								},
+								{
+									"key": "Server",
+									"value": "WSGIServer/0.2 CPython/3.9.6"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Allow",
+									"value": "GET, POST, HEAD, OPTIONS"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "DENY"
+								},
+								{
+									"key": "Content-Length",
+									"value": "596"
+								},
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff"
+								},
+								{
+									"key": "Referrer-Policy",
+									"value": "same-origin"
+								},
+								{
+									"key": "Cross-Origin-Opener-Policy",
+									"value": "same-origin"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"success\": true,\n    \"total_count\": null,\n    \"next\": null,\n    \"previous\": null,\n    \"next_page\": null,\n    \"current_page\": null,\n    \"previous_page\": null,\n    \"page_size\": null,\n    \"data\": {\n        \"id\": 1,\n        \"image\": {\n            \"id\": 1,\n            \"created_at\": \"2023-04-30T20:34:59.650884Z\",\n            \"modified_at\": \"2023-04-30T20:34:59.650906Z\",\n            \"name\": \"One\",\n            \"image_url\": \"http://getdrawings.com/one-icon#one-icon-3.png\"\n        },\n        \"user\": {\n            \"id\": 2,\n            \"username\": \"Ganesh12\",\n            \"phone_number\": \"+918125825876\",\n            \"is_profile_complete\": true,\n            \"token\": \"9de51abe1dd875754d5bf1b66297cd880f193e39\",\n            \"created_at\": \"2023-04-30T20:08:58.072047Z\",\n            \"modified_at\": \"2023-04-30T20:29:09.032686Z\"\n        },\n        \"selection_type\": \"interested\"\n    }\n}"
+						},
+						{
+							"name": "Reject Image",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"image_id\": 1,\n    \"selection_type\": \"rejected\"\n}\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{BASE_URL}}/api/user_ratings/",
+									"host": [
+										"{{BASE_URL}}"
+									],
+									"path": [
+										"api",
+										"user_ratings",
+										""
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Date",
+									"value": "Sun, 30 Apr 2023 20:46:01 GMT"
+								},
+								{
+									"key": "Server",
+									"value": "WSGIServer/0.2 CPython/3.9.6"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Allow",
+									"value": "GET, POST, HEAD, OPTIONS"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "DENY"
+								},
+								{
+									"key": "Content-Length",
+									"value": "594"
+								},
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff"
+								},
+								{
+									"key": "Referrer-Policy",
+									"value": "same-origin"
+								},
+								{
+									"key": "Cross-Origin-Opener-Policy",
+									"value": "same-origin"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"success\": true,\n    \"total_count\": null,\n    \"next\": null,\n    \"previous\": null,\n    \"next_page\": null,\n    \"current_page\": null,\n    \"previous_page\": null,\n    \"page_size\": null,\n    \"data\": {\n        \"id\": 1,\n        \"image\": {\n            \"id\": 1,\n            \"created_at\": \"2023-04-30T20:34:59.650884Z\",\n            \"modified_at\": \"2023-04-30T20:34:59.650906Z\",\n            \"name\": \"One\",\n            \"image_url\": \"http://getdrawings.com/one-icon#one-icon-3.png\"\n        },\n        \"user\": {\n            \"id\": 2,\n            \"username\": \"Ganesh12\",\n            \"phone_number\": \"+918125825876\",\n            \"is_profile_complete\": true,\n            \"token\": \"9de51abe1dd875754d5bf1b66297cd880f193e39\",\n            \"created_at\": \"2023-04-30T20:08:58.072047Z\",\n            \"modified_at\": \"2023-04-30T20:29:09.032686Z\"\n        },\n        \"selection_type\": \"rejected\"\n    }\n}"
+						},
+						{
+							"name": "Invalid Image ID",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"image_id\": 10,\n    \"selection_type\": \"interested\"\n}\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{BASE_URL}}/api/user_ratings/",
+									"host": [
+										"{{BASE_URL}}"
+									],
+									"path": [
+										"api",
+										"user_ratings",
+										""
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "server",
+									"value": "Fly/199ec4d3 (2023-04-25)"
+								},
+								{
+									"key": "date",
+									"value": "Mon, 01 May 2023 15:44:33 GMT"
+								},
+								{
+									"key": "connection",
+									"value": "close"
+								},
+								{
+									"key": "content-type",
+									"value": "application/json"
+								},
+								{
+									"key": "allow",
+									"value": "GET, POST, HEAD, OPTIONS"
+								},
+								{
+									"key": "x-frame-options",
+									"value": "DENY"
+								},
+								{
+									"key": "content-encoding",
+									"value": "gzip"
+								},
+								{
+									"key": "x-content-type-options",
+									"value": "nosniff"
+								},
+								{
+									"key": "referrer-policy",
+									"value": "same-origin"
+								},
+								{
+									"key": "cross-origin-opener-policy",
+									"value": "same-origin"
+								},
+								{
+									"key": "transfer-encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "via",
+									"value": "1.1 fly.io"
+								},
+								{
+									"key": "fly-request-id",
+									"value": "01GZBZSAMA5Z2AJBCYBHSAJ9ND-maa"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"success\": false,\n    \"errors\": {\n        \"err_title\": \"\",\n        \"error_message\": \"Invalid Image id 10.\",\n        \"err_dev_message\": \"\",\n        \"error_code\": \"BAD_REQUEST\"\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "User Ratings History",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{BASE_URL}}/api/user_ratings",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"api",
+								"user_ratings"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "User Ratings History",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{BASE_URL}}/api/user_ratings",
+									"host": [
+										"{{BASE_URL}}"
+									],
+									"path": [
+										"api",
+										"user_ratings"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "server",
+									"value": "Fly/199ec4d3 (2023-04-25)"
+								},
+								{
+									"key": "date",
+									"value": "Mon, 01 May 2023 12:37:14 GMT"
+								},
+								{
+									"key": "connection",
+									"value": "close"
+								},
+								{
+									"key": "content-type",
+									"value": "application/json"
+								},
+								{
+									"key": "allow",
+									"value": "GET, POST, HEAD, OPTIONS"
+								},
+								{
+									"key": "expires",
+									"value": "Mon, 01 May 2023 12:42:14 GMT"
+								},
+								{
+									"key": "cache-control",
+									"value": "max-age=300"
+								},
+								{
+									"key": "x-frame-options",
+									"value": "DENY"
+								},
+								{
+									"key": "content-encoding",
+									"value": "gzip"
+								},
+								{
+									"key": "x-content-type-options",
+									"value": "nosniff"
+								},
+								{
+									"key": "referrer-policy",
+									"value": "same-origin"
+								},
+								{
+									"key": "cross-origin-opener-policy",
+									"value": "same-origin"
+								},
+								{
+									"key": "transfer-encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "via",
+									"value": "1.1 fly.io"
+								},
+								{
+									"key": "fly-request-id",
+									"value": "01GZBN2BBB07STZF98SWS7ZYFV-maa"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"success\": true,\n    \"total_count\": 1,\n    \"next\": null,\n    \"previous\": null,\n    \"next_page\": null,\n    \"current_page\": 1,\n    \"previous_page\": null,\n    \"page_size\": 10,\n    \"data\": [\n        {\n            \"id\": 1,\n            \"image\": {\n                \"id\": 1,\n                \"created_at\": \"2023-05-01T12:35:24.490424Z\",\n                \"modified_at\": \"2023-05-01T12:35:24.490434Z\",\n                \"name\": \"One\",\n                \"image_url\": \"http://getdrawings.com/one-icon#one-icon-3.png\"\n            },\n            \"user\": {\n                \"id\": 1,\n                \"username\": \"Ganesh12\",\n                \"phone_number\": \"+918125825876\",\n                \"is_profile_complete\": true,\n                \"token\": \"5fdb53552b582fcf2d76891211c6524cb72639d2\",\n                \"created_at\": \"2023-05-01T12:36:25.478064Z\",\n                \"modified_at\": \"2023-05-01T12:36:53.799713Z\"\n            },\n            \"selection_type\": \"interested\"\n        }\n    ]\n}"
+						}
+					]
+				}
+			]
+		}
+	],
+	"auth": {
+		"type": "apikey",
+		"apikey": [
+			{
+				"key": "value",
+				"value": "Token {{AUTHORIZATION_TOKEN}}",
+				"type": "string"
+			},
+			{
+				"key": "key",
+				"value": "Authorization",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	]
+}
