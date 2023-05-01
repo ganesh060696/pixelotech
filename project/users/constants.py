@@ -1,0 +1,3 @@
+OTP_KEY_FORMAT = "otp_sent_{}"
+OTP_KEY_TTL = 5*60
+STATIC_OTP = "00000"
